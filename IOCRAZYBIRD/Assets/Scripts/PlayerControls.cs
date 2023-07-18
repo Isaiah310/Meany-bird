@@ -22,6 +22,16 @@ objectHeight = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            rb.velocity = Vector2.up * velocity;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "HighSpike" || collision.gameObject.tag == "LowSpike" || collision.gameObject.tag == "Ground")
+        {
+            GameObject.Find("GameController").GetComponent<GameController>().GameOver();
+        }
     }
 }
